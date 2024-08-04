@@ -10,6 +10,7 @@ import {
 import CategoryItem from '../components/CategoryItem';
 import {getProductCategories} from '../api/dummyApi';
 import SearchIcon from '../assets/svg/search.svg';
+import BackIcon from '../assets/svg/backarrow.svg';
 
 const ProductCategoriesScreen = ({navigation}) => {
   const [categories, setCategories] = useState([]);
@@ -51,12 +52,17 @@ const ProductCategoriesScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
-        <TextInput
+        <TouchableOpacity
+          style={styles.backIconContainer}
+          onPress={() => navigation.goBack()}>
+          <BackIcon width={28} height={28} />
+        </TouchableOpacity>
+        <TouchableOpacity
           style={styles.searchInput}
-          placeholder="Select any product to add..."
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-        />
+          onPress={() => navigation.navigate('Search')}>
+          <Text style={styles.product}> Product Categories </Text>
+          <Text style={styles.subText}> Select any product to add </Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.iconContainer}
           onPress={() => navigation.navigate('Search')}>
@@ -96,8 +102,14 @@ const styles = StyleSheet.create({
     position: 'relative',
     marginBottom: 10,
   },
+  backIconContainer: {
+    position: 'absolute',
+    left: 10,
+    top: '45%',
+    transform: [{translateY: -12}],
+  },
   searchInput: {
-    height: 60,
+    height: 70,
     borderColor: 'grey',
     borderWidth: 1,
     borderRadius: 10,
@@ -112,6 +124,19 @@ const styles = StyleSheet.create({
     width: 30,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  product: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'black',
+    paddingLeft: 40,
+    padding: 4,
+    marginTop: 3,
+  },
+  subText: {
+    fontSize: 16,
+    color: 'grey',
+    paddingLeft: 40,
   },
 });
 

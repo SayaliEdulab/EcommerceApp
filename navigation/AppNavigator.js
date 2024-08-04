@@ -27,6 +27,9 @@ function ProductsStack() {
       <Stack.Screen
         name="Product Categories"
         component={ProductCategoriesScreen}
+        options={{
+          headerShown: false, // Hide header for Products tab
+        }}
       />
       <Stack.Screen name="SubCategories" component={SubCategoriesScreen} />
       <Stack.Screen name="Search" component={SearchScreen} />
